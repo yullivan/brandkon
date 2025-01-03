@@ -8,15 +8,14 @@ import java.util.List;
 @RestController
 public class CategoryRestController {
 
+    private final CategoryService categoryService;
+
+    public CategoryRestController(CategoryService categoryService) {
+        this.categoryService = categoryService;
+    }
+
     @GetMapping("/categories")
     public List<CategoryResponse> getAll() {
-        return List.of(
-                new CategoryResponse(
-                        1L,
-                        "카페",
-                        "cafe",
-                        "/icons/cafe.png"
-                )
-        );
+        return categoryService.getAll();
     }
 }
